@@ -1,6 +1,5 @@
 import pygame
 
-
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
     def __init__(self, x, y, radius):
@@ -29,3 +28,11 @@ class CircleShape(pygame.sprite.Sprite):
         if distance <= radius_sum:
             return True
         return False
+    
+    def shooted(self, shot):
+        distance = self.position.distance_to(shot.position)
+        radius_sum = self.radius + shot.radius
+        if distance <= radius_sum:
+            self.kill()
+            shot.kill()
+        
